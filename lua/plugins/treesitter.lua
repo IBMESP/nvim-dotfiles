@@ -11,4 +11,12 @@
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
+	{
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    cmd = "Telescope",
+    opts = function()
+      return require "configs.telescope"
+    end,
+  },
 }

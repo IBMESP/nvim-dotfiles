@@ -5,10 +5,10 @@ return {
 		config = function()
     	vim.o.background = "dark" -- Establece el fondo oscuro
     	require("gruvbox").setup({
-      	contrast = "soft", -- Opciones: 'hard', 'soft' o vacío para el contraste predeterminado
+      	contrast = "hard", -- Opciones: 'hard', 'soft' o vacío para el contraste predeterminado
       	overrides = {},    -- Personaliza grupos de resaltado si es necesario
     	})
-    	vim.cmd("colorscheme gruvbox")
+      vim.cmd("colorscheme gruvbox")
   	end,
 		priority = 1000,
   }

@@ -2,14 +2,21 @@ return {
   {
     'williamboman/mason.nvim',
     config = function()
-      require('mason').setup()
+      require('mason').setup({
+      	ensure_installed = { 
+					'clangd', 
+					'codelldb', 
+				},
+			})
     end
   },
   {
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
-        ensure_installed = { 'clangd' }, -- Lista de servidores a instalar
+        ensure_installed = { 
+					'clangd', 
+				}, -- Lista de servidores a instalar
       })
     end
   },

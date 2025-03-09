@@ -12,3 +12,19 @@ vim.opt.termguicolors = true
 -- Desactiva netrw para evitar que interfiera
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
+
+vim.opt.clipboard = "unnamedplus"
+
+-- Configuración del portapapeles para Wayland con wl-clipboard
+vim.g.clipboard = {
+  name = 'wl-clipboard',
+  copy = {
+    ['+'] = 'wl-copy',
+    ['*'] = 'wl-copy',
+  },
+  paste = {
+    ['+'] = 'wl-paste',
+    ['*'] = 'wl-paste',
+  },
+  cache_enabled = 0,
+}

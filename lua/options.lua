@@ -16,7 +16,7 @@ vim.g.loaded_netrw = 1
 vim.opt.clipboard = "unnamedplus"
 
 -- Configuración del portapapeles para Wayland con wl-clipboard
-vim.g.clipboard = {
+--[[vim.g.clipboard = {
   name = 'wl-clipboard',
   copy = {
     ['+'] = 'wl-copy',
@@ -27,4 +27,4 @@ vim.g.clipboard = {
     ['*'] = 'wl-paste',
   },
   cache_enabled = 0,
-}
+}]]

@@ -31,6 +31,26 @@ return {
           lspconfig[server_name].setup({})
         end,
       })
+
+
+			local signs = {
+  			Error = "",  -- Error -> Fuego
+  			Warn  = "",  -- Advertencia -> Triángulo de peligro
+  			Hint  = "",  -- Sugerencia -> Bombilla
+  			Info  = ""   -- Información -> "i" en círculo
+			}
+
+			for type, icon in pairs(signs) do
+  			local hl = "DiagnosticSign" .. type
+  			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			end
+
+			vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
+			vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = "#FF5555", bg = "NONE" })
+			vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "#FFAA00", bg = "NONE" })
+			vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#55FFFF", bg = "NONE" })
+			vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#55FF55", bg = "NONE" })
+
     end
   },
 	{

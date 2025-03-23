@@ -10,6 +10,10 @@ dap.configurations.cpp = {
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
+		args = function()
+			local input = vim.fn.input('Args: ')
+			return vim.split(input," ")
+		end
   },
 }
 

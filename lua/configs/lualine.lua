@@ -23,29 +23,63 @@ require('lualine').setup {
     ignore_focus = {},
     always_divide_middle = true,
     always_show_tabline = true,
-    globalstatus = false,
+    globalstatus = true,
     refresh = {
       statusline = 100,
       tabline = 100,
       winbar = 100,
     }
   },
+
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'filetype','filename'},
-    lualine_c = {'branch', {'diff', source = diff_source}, 'diagnostics'},
-    lualine_x = {},
+    lualine_a = { 
+			{
+				'mode', 
+				fmt = function(str) 
+					return " " .. str 
+				end
+			} 
+		},
+    lualine_b = { 
+			{
+				'filetype', 
+				icon_only = true, 
+				separator = '', 
+				padding = { left = 1, right = 0 }
+			}, 
+			'filename' 
+		},
+    lualine_c = {
+			{ 
+				'branch',
+				separator = '', 
+				padding = { left = 1, right = 0 }
+			}, 
+			{'diff', source = diff_source}},
+    lualine_x = {
+			{
+				'diagnostics',
+				symbols = {
+  				error = " ",
+  				warn  = " ",
+  				hint  = " ",
+  				info  = " "
+				}
+			}
+		},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
+
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = {},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },
+
   tabline = {},
   winbar = {},
   inactive_winbar = {},

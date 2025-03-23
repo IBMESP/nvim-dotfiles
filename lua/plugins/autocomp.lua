@@ -32,12 +32,11 @@ return {
         end,
       })
 
-
 			local signs = {
-  			Error = "",  -- Error -> Fuego
-  			Warn  = "",  -- Advertencia -> Triángulo de peligro
-  			Hint  = "",  -- Sugerencia -> Bombilla
-  			Info  = ""   -- Información -> "i" en círculo
+  			Error = "",
+  			Warn  = "",
+  			Hint  = "",
+  			Info  = ""
 			}
 
 			for type, icon in pairs(signs) do

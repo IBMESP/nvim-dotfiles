@@ -36,6 +36,7 @@ harpoon:setup()
 
 vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>qa", function() harpoon:list():remove() end)
+vim.keymap.set("n", "<leader>qr", function() harpoon:list():clear() end)
 vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
 vim.keymap.set("n", "<C-p>", function() harpoon:list():select(1) end)

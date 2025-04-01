@@ -1,47 +1,58 @@
 return {
-  {
-    'williamboman/mason.nvim',
-    config = function()
-      require('mason').setup({
-      	ensure_installed = { 
+	{
+		'williamboman/mason.nvim',
+		config = function()
+			require('mason').setup({
+				ensure_installed = { 
 					'clangd', 
-					'codelldb', 
+					'codelldb',
+					'google-java-format'
 				},
 			})
-    end
-  },
-  {
-    'williamboman/mason-lspconfig.nvim',
-    config = function()
-      require('mason-lspconfig').setup({
-        ensure_installed = { 
-					'clangd', 
+		end
+	},
+	{
+		'williamboman/mason-lspconfig.nvim',
+		config = function()
+			require('mason-lspconfig').setup({
+				ensure_installed = { 
+					'clangd',
+					'google-java-format'
 				}, -- Lista de servidores a instalar
-      })
-    end
-  },
-  {
-    'neovim/nvim-lspconfig',
-    config = function()
-      local lspconfig = require('lspconfig')
-      local mason_lspconfig = require('mason-lspconfig')
+			})
+		end
+	},
+	{
+		'neovim/nvim-lspconfig',
+		config = function()
+			local lspconfig = require('lspconfig')
+			local mason_lspconfig = require('mason-lspconfig')
 
-      mason_lspconfig.setup_handlers({
-        function(server_name)
-          lspconfig[server_name].setup({})
-        end,
-      })
+			mason_lspconfig.setup_handlers({
+				function(server_name)
+					lspconfig[server_name].setup({})
+				end,
+			})
+
+			-- Configuración de diagnóstico
+			vim.diagnostic.config({
+				virtual_text = true,  -- Muestra los errores como texto virtual en las líneas
+				signs = true,         -- Muestra los signos (íconos) para los errores
+				update_in_insert = true,  -- Actualiza los diagnósticos mientras se escribe
+				underline = true,     -- Subraya las líneas con errores
+				severity_sort = true, -- Ordena los diagnósticos por severidad
+			})
 
 			local signs = {
-  			Error = "",
-  			Warn  = "",
-  			Hint  = "",
-  			Info  = ""
+				Error = "",
+				Warn  = "",
+				Hint  = "",
+				Info  = ""
 			}
 
 			for type, icon in pairs(signs) do
-  			local hl = "DiagnosticSign" .. type
-  			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+				local hl = "DiagnosticSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 			end
 
 			vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
@@ -50,50 +61,48 @@ return {
 			vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#55FFFF", bg = "NONE" })
 			vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#55FF55", bg = "NONE" })
 
-    end
-  },
+		end
+	},
 	{
-  	'hrsh7th/nvim-cmp',
-    
+		'hrsh7th/nvim-cmp',
+
 		dependencies = {
 			{
-      	'hrsh7th/cmp-nvim-lsp',
-      	'hrsh7th/cmp-buffer',
-      	'hrsh7th/cmp-path',
-      	'hrsh7th/cmp-cmdline',
-      	'L3MON4D3/LuaSnip',
-      	'saadparwaiz1/cmp_luasnip'
+				'hrsh7th/cmp-nvim-lsp',
+				'hrsh7th/cmp-buffer',
+				'hrsh7th/cmp-path',
+				'hrsh7th/cmp-cmdline',
+				'L3MON4D3/LuaSnip',
+				'saadparwaiz1/cmp_luasnip'
 			},
 			{
-      	"windwp/nvim-autopairs",
-      	opts = {
-        	fast_wrap = {},
-        	disable_filetype = { "TelescopePrompt", "vim" },
-      	},
-      	config = function(_, opts)
-        	require("nvim-autopairs").setup(opts)
+				"windwp/nvim-autopairs",
+				opts = {
+					fast_wrap = {},
+					disable_filetype = { "TelescopePrompt", "vim" },
+				},
+				config = function(_, opts)
+					require("nvim-autopairs").setup(opts)
 
-        	-- setup cmp for autopairs
-        	local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-        	require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-      	end,
-  			},
-				{
-        	-- snippet plugin
-        	"L3MON4D3/LuaSnip",
-        	dependencies = "rafamadriz/friendly-snippets",
-        	opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-        	config = function(_, opts)
-          	require("luasnip").config.set_config(opts)
-          	require "configs.luasnip"
-        	end,
-      	},
-    	},
-    
-		
+					-- setup cmp for autopairs
+					local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+					require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+				end,
+			},
+			{
+				-- snippet plugin
+				"L3MON4D3/LuaSnip",
+				dependencies = "rafamadriz/friendly-snippets",
+				opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+				config = function(_, opts)
+					require("luasnip").config.set_config(opts)
+					require "configs.luasnip"
+				end,
+			},
+		},
 
-    config = function()
-    	require('configs.cmp') 
-    end,
-  },
+		config = function()
+			require('configs.cmp') 
+		end,
+	},
 }

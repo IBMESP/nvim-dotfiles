@@ -28,3 +28,14 @@ vim.opt.clipboard = "unnamedplus"
   },
   cache_enabled = 0,
 }]]
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "rust",
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.expandtab = true
+  end,
+})
+
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"

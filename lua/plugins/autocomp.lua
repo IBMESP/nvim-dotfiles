@@ -6,7 +6,6 @@ return {
 				ensure_installed = { 
 					'clangd', 
 					'codelldb',
-					'google-java-format'
 				},
 			})
 		end
@@ -17,7 +16,6 @@ return {
 			require('mason-lspconfig').setup({
 				ensure_installed = { 
 					'clangd',
-					'google-java-format'
 				}, -- Lista de servidores a instalar
 			})
 		end
@@ -34,14 +32,11 @@ return {
 				end,
 			})
 
-			-- Configuración de diagnóstico
-			vim.diagnostic.config({
-				virtual_text = true,  -- Muestra los errores como texto virtual en las líneas
-				signs = true,         -- Muestra los signos (íconos) para los errores
-				update_in_insert = true,  -- Actualiza los diagnósticos mientras se escribe
-				underline = true,     -- Subraya las líneas con errores
-				severity_sort = true, -- Ordena los diagnósticos por severidad
-			})
+			vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
+			vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = "#FF5555", bg = "NONE" })
+			vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "#FFAA00", bg = "NONE" })
+			vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#55FFFF", bg = "NONE" })
+			vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#55FF55", bg = "NONE" })
 
 			local signs = {
 				Error = "",
@@ -50,16 +45,22 @@ return {
 				Info  = ""
 			}
 
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-			end
-
-			vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
-			vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = "#FF5555", bg = "NONE" })
-			vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "#FFAA00", bg = "NONE" })
-			vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#55FFFF", bg = "NONE" })
-			vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "#55FF55", bg = "NONE" })
+			-- Configuración de diagnóstico
+			vim.diagnostic.config({
+				virtual_text = true, -- Muestra los errores como texto virtual en las líneas
+        signs = {
+					active = true,
+					text = {
+          	[vim.diagnostic.severity.ERROR] = "",
+          	[vim.diagnostic.severity.WARN] = "",
+          	[vim.diagnostic.severity.INFO] = "",
+          	[vim.diagnostic.severity.HINT] = "",
+					},
+        }, -- Muestra los signos (íconos) para los errores
+				update_in_insert = true,  -- Actualiza los diagnósticos mientras se escribe
+				underline = true,     -- Subraya las líneas con errores
+				severity_sort = true, -- Ordena los diagnósticos por severidad
+			})
 
 		end
 	},

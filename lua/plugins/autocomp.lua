@@ -6,6 +6,7 @@ return {
 				ensure_installed = { 
 					'clangd', 
 					'codelldb',
+					'jdtls'
 				},
 			})
 		end
@@ -105,5 +106,9 @@ return {
 		config = function()
 			require('configs.cmp') 
 		end,
+	},
+	-- Java
+	{
+		'mfussenegger/nvim-jdtls',
 	},
 }

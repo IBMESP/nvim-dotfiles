@@ -5,6 +5,7 @@ vim.opt.fillchars:append({ eob = " " })
 vim.opt.conceallevel = 2
 
 vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 
 vim.opt.termguicolors = true
@@ -28,6 +29,7 @@ vim.opt.clipboard = "unnamedplus"
   },
   cache_enabled = 0,
 }]]
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "rust",
   callback = function()
@@ -37,5 +39,8 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
+vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
+vim.opt.undofile = true
+
+--vim.opt.encoding = "utf-8"
+--vim.opt.fileencoding = "utf-8"

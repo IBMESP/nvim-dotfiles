@@ -27,6 +27,9 @@ map("n", "<leader>fa","<cmd>Telescope find_files follow=true no_ignore=true hidd
 map("n","<leader>db","<cmd> DapToggleBreakpoint <CR>")
 map("n","<leader>dr","<cmd> DapContinue <CR>")
 
+-- clear find
+map("n","<leader>fc","<cmd>noh<CR>")
+
 -- harpoon
 local harpoon = require("harpoon")
 
@@ -47,3 +50,4 @@ vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
 -- Toggle previous & next buffers stored within Harpoon list
 vim.keymap.set("n", "<S-Tab>", function() harpoon:list():prev() end)
 vim.keymap.set("n", "<C-Tab>", function() harpoon:list():next() end)
+

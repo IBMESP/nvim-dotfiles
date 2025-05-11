@@ -1,6 +1,7 @@
 return {
 	{
 		'williamboman/mason.nvim',
+		version = "1.11.0",
 		config = function()
 			require('mason').setup({
 				ensure_installed = { 
@@ -13,10 +14,12 @@ return {
 	},
 	{
 		'williamboman/mason-lspconfig.nvim',
+		version = "1.32.0",
 		config = function()
 			require('mason-lspconfig').setup({
 				ensure_installed = { 
 					'clangd',
+					'jdtls'
 				}, -- Lista de servidores a instalar
 			})
 		end

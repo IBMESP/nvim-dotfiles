@@ -1,5 +1,8 @@
 return {
-  filters = { dotfiles = false },
+  filters = { 
+		dotfiles = false,
+		custom = { ".*\\.cs\\.uid$" }	
+	},
   disable_netrw = true,
   hijack_cursor = true,
   sync_root_with_cwd = true,
@@ -17,16 +20,19 @@ return {
     indent_markers = { enable = true },
     icons = {
       glyphs = {
-        default = "󰈚",
+        default = "󰈚 ",
         folder = {
-          default = "",
-          empty = "",
-          empty_open = "",
-          open = "",
-          symlink = "",
+          default = " ",
+          empty = " ",
+          empty_open = " ",
+          open = " ",
+          symlink = " ",
         },
-        git = { unmerged = "" },
+        git = { unmerged = " " },
       },
     },
   },
+	git = {
+		timeout = 1000
+	}
 }

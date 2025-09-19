@@ -32,7 +32,10 @@ return {
       },
     },
   },
-	git = {
-		timeout = 1000
-	}
+	git = {  
+		timeout = 1500
+	},
+	filesystem_watchers = {
+		enable = true,
+	},
 }

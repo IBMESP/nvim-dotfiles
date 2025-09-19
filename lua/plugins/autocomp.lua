@@ -27,13 +27,16 @@ return {
 	{
 		'neovim/nvim-lspconfig',
 		config = function()
-			local lspconfig = require('lspconfig')
 			local mason_lspconfig = require('mason-lspconfig')
 
 			mason_lspconfig.setup_handlers({
 				function(server_name)
-					lspconfig[server_name].setup({})
+					vim.lsp.enable(server_name)
 				end,
+			})
+
+			vim.lsp.config('clangd',{
+				cmd = { "clangd", "--compile-commands-dir=build/Debug"},
 			})
 
 			vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })

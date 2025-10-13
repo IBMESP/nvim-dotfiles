@@ -13,6 +13,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+vim.cmd([[
+  autocmd BufWritePre *.cpp,*.h silent! :%!clang-format
+]])
+
 require("configs.lazy")
 
 require("options")

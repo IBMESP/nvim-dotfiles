@@ -51,3 +51,7 @@ vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
 vim.keymap.set("n", "<S-Tab>", function() harpoon:list():prev() end)
 vim.keymap.set("n", "<C-Tab>", function() harpoon:list():next() end)
 
+-- Comment
+vim.keymap.set('n', '<leader>/', 'gcc', { remap = true })
+vim.keymap.set('v', '<leader>/', 'gc', { remap = true })
+

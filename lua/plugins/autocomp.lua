@@ -36,7 +36,12 @@ return {
 			})
 
 			vim.lsp.config('clangd',{
-				cmd = { "clangd", "--compile-commands-dir=build/Debug"},
+				cmd = { 
+					"clangd", 
+					"--compile-commands-dir=build/Debug",
+					"--enable-config"
+				},
+				filetypes = {"c", "cpp", "ipp"}
 			})
 
 			vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })

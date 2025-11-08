@@ -55,3 +55,11 @@ vim.keymap.set("n", "<C-Tab>", function() harpoon:list():next() end)
 vim.keymap.set('n', '<leader>/', 'gcc', { remap = true })
 vim.keymap.set('v', '<leader>/', 'gc', { remap = true })
 
+-- Mapear ESPACIO + C + S para formatear el archivo actual con clang-format
+vim.api.nvim_set_keymap(
+  'n',            -- modo normal
+  '<leader>cs',   -- keybind (ESPACIO es <leader>)
+  ':silent !clang-format -i %<CR>', -- comando a ejecutar
+  { noremap = true, silent = true } -- opciones
+)
+

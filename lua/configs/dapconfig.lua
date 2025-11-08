@@ -6,7 +6,7 @@ dap.configurations.cpp = {
     type = "codelldb",
     request = "launch",
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/', 'file')
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/Debug/', 'file')
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
